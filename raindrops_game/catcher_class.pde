@@ -3,12 +3,15 @@ class catcher {
   int d;
 
   catcher() {
-    d = 50;
+    d = 100;
     loc = new PVector(mouseX, mouseY);
   }
 
   void show() {
-    ellipse(loc.x, loc.y, d, d);
+    loc.set(mouseX,mouseY);
+    ellipse(mouseX, mouseY, d, d);
+  }
+  void move() {
   }
 }
 

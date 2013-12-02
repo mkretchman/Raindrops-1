@@ -5,15 +5,14 @@ class raindrop {
 
   raindrop() {
     drop = loadImage("drop.png");
+    imageMode(CENTER);
     loc = new PVector(random(width), random(-1000, -drop.height));
     vel = new PVector(0, 2);
     acc = new PVector(0, .1);
-    tintx = random(255);
   }
 
   void show() {
-    tint(255, tintx);
-    image(drop, loc.x, loc.y);
+    image(drop, loc.x, loc.y, 10, 15);
   }
 
   void fall() {
