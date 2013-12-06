@@ -12,17 +12,22 @@ void setup()
   {
     drop[i] = new raindrops();
   }
+  catcher = new catchers();
 }
 
 void draw()
 {
   background(0);
+  //raindrops
   if (full)
   {
     for (int i = 0; i < drop.length; i++)
     {
       drop[i].show();
       drop[i].fall();
+      if (dist(drop[i].loc.x, drop[i].loc.y, catcher.loc.x, catcher.loc.y) <= 50) {
+        drop[i].loc.y = height;
+      }
     }
   }
   else
@@ -31,6 +36,9 @@ void draw()
     {
       drop[i].show();
       drop[i].fall();
+      if (dist(drop[i].loc.x, drop[i].loc.y, catcher.loc.x, catcher.loc.y) <= 50) {
+        drop[i].loc.y = height;
+      }
     }
   }
   if (timer.count())
@@ -43,5 +51,16 @@ void draw()
       full = true;
     }
   }
+  //catcher
+  catcher.show();
+  
 }
+
+
+
+
+
+
+
+
 

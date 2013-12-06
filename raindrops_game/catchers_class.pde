@@ -11,7 +11,5 @@ class catchers {
     loc.set(mouseX,mouseY);
     ellipse(mouseX, mouseY, d, d);
   }
-  void move() {
-  }
 }
 
