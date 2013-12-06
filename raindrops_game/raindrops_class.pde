@@ -1,12 +1,12 @@
-class raindrop {
+class raindrops {
   PVector loc, vel, acc;
   PImage drop;
   float tintx;
 
-  raindrop() {
+  raindrops() {
     drop = loadImage("drop.png");
     imageMode(CENTER);
-    loc = new PVector(random(width), random(-1000, -drop.height));
+    loc = new PVector(random(width), -drop.height);
     vel = new PVector(0, 2);
     acc = new PVector(0, .1);
   }
@@ -22,4 +22,3 @@ class raindrop {
     }
   }
 }
-

@@ -1,30 +1,46 @@
-ArrayList<raindrop> raindrops = new ArrayList<raindrop>();
-catcher catcher1;
+raindrops[] drop = new raindrops[500];
+catchers catcher;
+timers timer;
+boolean full = false;
+int dropNum = 0;
 
-void setup() {
-  size(displayWidth, displayHeight);
-  noStroke();
-  for (int i = 0; i < 20; i++) {
-    raindrops.add(new raindrop());
+void setup()
+{
+  size(500, 500);
+  timer = new timers();
+  for (int i = 0; i < drop.length; i++)
+  {
+    drop[i] = new raindrops();
   }
-  catcher1 = new catcher();
 }
 
-void draw() {
+void draw()
+{
   background(0);
-  if (frameCount%4 == 0) {
-    raindrops.add(new raindrop());
-  }
-  catcher1.show();
-  for (int i = raindrops.size()-1; i >= 0; i--) {
-    raindrop b = raindrops.get(i);
-    b.show();
-    b.fall();
-    if (b.loc.y > height + 100) {
-      raindrops.remove(i);
+  if (full)
+  {
+    for (int i = 0; i < drop.length; i++)
+    {
+      drop[i].show();
+      drop[i].fall();
     }
-    if (dist(b.loc.x, b.loc.y, catcher1.loc.x, catcher1.loc.y) <= 50) {
-      raindrops.remove(i);
+  }
+  else
+  {
+    for (int i = 0; i < dropNum+1; i++)
+    {
+      drop[i].show();
+      drop[i].fall();
+    }
+  }
+  if (timer.count())
+  {
+    drop[dropNum] = new raindrops();
+    dropNum++;
+    if (dropNum >= drop.length)
+    {
+      dropNum = 0;
+      full = true;
     }
   }
 }
