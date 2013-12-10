@@ -1,9 +1,7 @@
 class catchers {
   PVector loc;
-  int d;
 
   catchers() {
-    d = 100;
     loc = new PVector(mouseX, mouseY);
   }
 
