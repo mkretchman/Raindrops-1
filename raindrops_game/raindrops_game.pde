@@ -2,8 +2,9 @@ raindrops[] drop = new raindrops[500];
 catchers catcher;
 timers timer;
 boolean full = false;
-int dropNum = 0;
+int dropNum;
 int d;
+int score;
 
 void setup()
 {
@@ -15,6 +16,7 @@ void setup()
   }
   catcher = new catchers();
   timer = new timers();
+  textSize(30);
 }
 
 void draw()
@@ -34,13 +36,23 @@ void draw()
   }
   if (!full)
   {
+    //only letting dropNum number of raindrops fall
     for (int i = 0; i < dropNum+1; i++)
     {
       drop[i].show();
       drop[i].fall();
       //catching the raindrops
-      if (dist(drop[i].loc.x, drop[i].loc.y, catcher.loc.x, catcher.loc.y) <= d/2) {
-        drop[i].loc.y = height;
+      if (dist(drop[i].loc.x, drop[i].loc.y, catcher.loc.x, catcher.loc.y) <= d/2)
+      {
+        drop[i].loc.x = -100;
+        score++;
+      }
+      if (drop[i].loc.y >= height + 20 && drop[i].loc.x >= 0)
+      {
+        drop[i].loc.y = height + 10;
+        drop[i].vel.y = 0;
+        drop[i].acc.y = 0;
+        score--;
       }
     }
   }
@@ -51,13 +63,23 @@ void draw()
     {
       drop[i].show();
       drop[i].fall();
-      if (dist(drop[i].loc.x, drop[i].loc.y, catcher.loc.x, catcher.loc.y) <= 50) {
-        drop[i].loc.y = height;
+      //catching the raindrops
+      if (dist(drop[i].loc.x, drop[i].loc.y, catcher.loc.x, catcher.loc.y) <= d/2)
+      {
+        drop[i].loc.x = -100;
+        score++;
+      }
+      //decreasing the score
+      if (drop[i].loc.y == height)
+      {
+        score--;
       }
     }
   }
   //catcher
   catcher.show();
+  //displaying the score
+  text(score,30,55);
 }
 
 
